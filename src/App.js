@@ -17,7 +17,7 @@ Food.propTypes = {
   name: PropTypes.string.isRequired,
   pic: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired
-}
+};
 
 const foodILike = [
   {
@@ -29,19 +29,14 @@ const foodILike = [
   }
 ];
 
-function renderFood(dish) {
-  return <Food 
-          key={dish.id}  
-          name={dish.name} 
-          pic={dish.image}
-          rating={dish.rating} />;
-}
 
 function App() {
   return(
     <div>
-      {console.log(foodILike.map(renderFood))}
-      {foodILike.map(renderFood)}
+      {/*console.log(foodILike.map(renderFood))*/}
+      {foodILike.map(dish =>(
+        <Food name={dish.name} pic={dish.image} rating={dish.rating} key={dish.id}/>
+      ))}
     </div>
     );
 }
