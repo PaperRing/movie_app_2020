@@ -1,23 +1,29 @@
 import React from 'react';
 
 //변수를 활용하는 방법
-function Food({ fav }){
-  //console.log(props.fav);
-  console.log(fav);
+function Food({ name, pic }){
   return (
     <div>
-      <h3>I like {fav}</h3>
+      <h3>I like {name}</h3>
+      <img src={pic}/>
     </div>
   );
 }
 
+const foodILike = [
+  {
+    name : "potato",
+    image :
+    "https://images.eatsmarter.de/sites/default/files/styles/576x432/public/images/kartoffeln-vitamin-c-bombe-341x256.jpg"
+  }
+];
+
 function App() {
   return(
-    <div>    
-      <h1>하이이이</h1>
-      <Food fav="kimchi"/>
-      <Food fav="Potato"/>
-
+    <div>
+      {foodILike.map(dish =>(
+        <Food name={dish.name} pic={dish.image}/>
+      ))}
     </div>
     );
 }
