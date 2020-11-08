@@ -1,48 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Food ({name, img, rating}){
-  return(
+//class component
+//return 대신 render 사용
+class App extends React.Component{
+  //변화하는 데이터
+  //state is object
+  state = {
+    count: 0
+  };
+
+  add = () => {
+    //render을 부르려면 setState를 써야함
+    //state에 의존하지 않으려면 current 사용하는 것이 best
+    this.setState(current => ({ count : current.count + 1}))
+  };
+
+  minus = () => {
+    this.setState(current => ({ count : current.count - 1}))
+  };
+
+  render(){
+  return (
     <div>
-      <h3>I like {name}</h3>
-      <img src={img} alt={name}/>
-      <div>rating : {rating}/5.0</div>
+      <h1>The number is : {this.state.count}</h1>
+      <button onClick={this.add}>add</button>
+      <button onClick={this.minus}>minus</button>
     </div>
-  );
-}
-
-Food.propTypes = {
-  name : PropTypes.string.isRequired
-};
-
-const foodILike = [
-  {
-    id : 1,
-    name : "potato",
-    image :     
-    "https://images.eatsmarter.de/sites/default/files/styles/576x432/public/images/kartoffeln-vitamin-c-bombe-341x256.jpg",
-    rating : 4
-  },
-  {
-    id : 2,
-    name : "kimchi",
-    image :     
-    "https://images.eatsmarter.de/sites/default/files/styles/576x432/public/images/kartoffeln-vitamin-c-bombe-341x256.jpg",
-    rating : 5
+    );
   }
-];
-
-function App(){
-  return(
-    <div>
-      {foodILike.map(dish =>(
-        <Food key={dish.id} name={dish.name} img={dish.image} rating={dish.rating}/>
-      ))}
-      {console.log(foodILike.map(dish=>(
-        <Food key={dish.id} name={dish.name} img={dish.image} rating={dish.rating}/>
-      )))}
-    </div>
-  );
 }
 
 export default App;
